@@ -1,115 +1,108 @@
-<div align="left">
-  <a href="https://lisk.com"><img alt="Lisk" src="./packages/nextjs/public/readme-banner.png" width="100%"></a>
-</div>
+# 🌱 PachaCredit
 
-<br />
+**PachaCredit** is an open infrastructure for **fair community microcredits in Latin America**.  
+The protocol enables **community lending pools**, **small loans with simple interest**, and an **on-chain reputation score** that rewards responsible borrowers.  
 
-Scaffold-Lisk is a fork of Scaffold-OP with minimal differences, providing additional dApp examples, native support for Superchain testnets, and more low-level instructions. We highly recommend the Scaffold-ETH2 docs as the primary guideline.
+---
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## 🚀 Vision & Purpose
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+- **Financial inclusion**: Provide fair access to credit for unbanked and underbanked communities in LatAm.  
+- **Transparency**: All rules are governed by smart contracts, with open and auditable transactions.  
+- **Community-powered**: Local investors and cooperatives can create their own lending pools.  
+- **Reputation-based**: Borrowers build an **on-chain credit score** that improves with good repayment behavior.  
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+---
 
-<div align="center" style="margin-top: 24px;">
-  <img alt="App demo" src="./packages/nextjs/public/scaffold-lisk-landing.png" width="100%">
-</div>
+## 🛠️ Technology Stack
 
-## Requirements
+- **Blockchain**: EVM-compatible (Lisk L2 / Ethereum testnets).  
+- **Smart Contracts**: Solidity ^0.8.23 with OpenZeppelin libraries.  
+- **Frameworks**: Hardhat + Hardhat Deploy.  
+- **Frontend**: Next.js + TailwindCSS (Web3 dashboard style).  
+- **Wallet Integration**: wagmi / viem.  
 
-Before you begin, you need to install the following tools:
+---
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+## 🏗️ Smart Contract Architecture
 
-## Quickstart
+contracts/
+├─ MicroCreditPoolFactory.sol # Creates and registers pools
+├─ MicroCreditPool.sol # Core pool logic: deposits, loans, repayments
+├─ LoanManager.sol # Loan lifecycle and debt calculation
+├─ CreditScoreRegistry.sol # On-chain reputation system (0–100 score)
+├─ Treasury.sol # Collects reserve fees from interest
+├─ interfaces/ # Contract interfaces
+└─ libs/Types.sol # Shared structs and enums
 
-To get started with Scaffold-Lisk, follow the steps below:
+markdown
+Copiar código
 
-1. Clone this repo & install dependencies
+### 🔹 Contract Roles
+- **DEFAULT_ADMIN_ROLE** → Deployers / System admins  
+- **MANAGER_ROLE** → Approve loans, configure pool parameters  
+- **POOL_ROLE** → LoanManager contract interacts with Registry & Treasury  
+- **TREASURY_ADMIN_ROLE** → Controls treasury withdrawals  
 
-```
-git clone https://github.com/LiskHQ/scaffold-lisk.git
-cd scaffold-lisk
-yarn install
-```
+### 🔹 Key Features
+- **Pool Factory**: Create multiple pools with different parameters (interest, tenor, score requirement).  
+- **MicroCredit Pool**: LPs deposit stablecoins, borrowers request & repay loans.  
+- **Loan Manager**: Calculates debt with simple interest by days.  
+- **Credit Score**: Reputation increases with repayment (+15) and decreases with defaults (-30).  
+- **Treasury**: Receives a fraction of interest (`reserveFactor`) to sustain the protocol.  
 
-2. Run a local network in the first terminal:
+---
 
-```
-yarn chain
-```
+## 📦 Deployment Report
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
+👤 **Deployer**: `0xC5F38CF01f0C0af20DaEfE62ECDCC6311CfeB86c`
 
-3. On a second terminal, deploy the test contract:
+### **Step 1: Deploy MockStablecoin**
+- Address: `0x1aa7d8045D18e3ed70103f32294a14E839D7Ce01`  
+- Total Supply: 1,000,000,000,000 (decimals: 6)  
 
-```
-yarn deploy
-```
+### **Step 2: Deploy CreditScoreRegistry**
+- Address: `0x3E42fB1C4D04916e86b741049df219EB3D71ca82`  
+- Roles: `DEFAULT_ADMIN_ROLE` → Deployer  
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+### **Step 3: Deploy Treasury**
+- Address: `0xf7596AEAc4515350B100048Edc4F6FeB02F604Df`  
+- Roles:  
+  - `DEFAULT_ADMIN_ROLE` → Deployer  
+  - `TREASURY_ADMIN_ROLE` → Deployer  
 
-4. On the same terminal, start your NextJS app:
+### **Step 4: Deploy LoanManager**
+- Address: `0x75aaAad403b206db02B8bD0ea8E357D238Ae48f3`  
+- Loans Created: 0  
 
-```
-yarn start
-```
+### **Step 5: Deploy MicroCreditPoolFactory**
+- Address: `0xAD39Bd520B519b21Ed1dFE35B21d915c459E892E`  
+- Pools Created: 0  
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+### **Step 6: Example Pool**
+- Address: `0x3B688fbF09DDf5432188B93c8Ece32f655b8278F`  
+- Parameters: 5% interest, 90 days tenor, 50% max loan ratio, 20% reserve factor, 50 min score  
 
-Run smart contract test with `yarn hardhat:test`
+### **Step 7: Roles & Permissions**
+- LoanManager granted `POOL_ROLE` in Registry, Treasury, LoanManager  
+- Deployer granted `MANAGER_ROLE` in LoanManager  
+- Deployer granted `TREASURY_ADMIN_ROLE` in Treasury  
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend in `packages/nextjs/pages`
-- Edit your deployment scripts in `packages/hardhat/deploy`
+### **Step 8: Real Pool**
+- Address: `0x13b084665235CD3562d0C867035Fb3564c1B27Ec`  
+- Parameters: 8% interest, 180 days tenor, 30% max loan ratio, 15% reserve factor, 70 min score  
 
-## Deploy Contracts to Superchain Testnet(s)
+---
 
-To deploy contracts to a remote testnet (e.g. Optimism Sepolia), follow the steps below:
+## 🔍 Final System Verification
 
-1. Get Superchain Sepolia ETH from the [Superchain Faucet](https://app.optimism.io/faucet)
+- **CreditScoreRegistry**: `0x3E42fB1C4D04916e86b741049df219EB3D71ca82`  
+- **Treasury**: `0xf7596AEAc4515350B100048Edc4F6FeB02F604Df`  
+- **LoanManager**: `0x75aaAad403b206db02B8bD0ea8E357D238Ae48f3`  
+- **MicroCreditPoolFactory**: `0xAD39Bd520B519b21Ed1dFE35B21d915c459E892E`  
+- **Example Pool**: `0xcf429Ae0e4B63512b37aA78D293c1C8984DD9226`  
+- **Real Pool**: `0x13b084665235CD3562d0C867035Fb3564c1B27Ec`  
+- **Total Pools Created**: 3  
 
-2. Inside the `packages/hardhat` directory, copy `.env.example` to `.env`.
-
-   ```bash
-   cd packages/hardhat && cp .env.example .env
-   ```
-
-3. Edit your `.env` to specify the environment variables. Only specifying the `DEPLOYER_PRIVATE_KEY` is necessary here. The contract will be deployed from the address associated with this private key, so make sure it has enough Sepolia ETH.
-
-   ```bash
-   DEPLOYER_PRIVATE_KEY = "your_private_key_with_sepolia_ETH";
-   ```
-
-4. Inside `scaffold-lisk`, run
-
-   ```bash
-   yarn deploy --network-options
-   ```
-
-   Use spacebar to make your selection(s). This command deploys all smart contracts in `packages/hardhat/contracts` to the selected network(s). Alternatively, you can try
-
-   ```bash
-   yarn deploy --network networkName
-   ```
-
-   Network names are found in `hardhat.config.js`. Please ensure you have enough Sepolia ETH on all these Superchains. If the deployments are successful, you will see the deployment tx hash on the terminal.
-
-## Adding Foundry
-
-Hardhat's NodeJS stack and cleaner deployment management makes it a better default for Scaffold-Lisk.
-
-To add Foundry to Scaffold-Lisk, follow this simple [tutorial](https://hardhat.org/hardhat-runner/docs/advanced/hardhat-and-foundry) by Hardhat. We recommend users who want more robust and faster testing to add Foundry.
-
-## Documentation
-
-We highly recommend visiting the original [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out their [website](https://scaffoldeth.io).
+✅ All roles correctly assigned  
+✅ Pools ready to accept deposits and process loans  
