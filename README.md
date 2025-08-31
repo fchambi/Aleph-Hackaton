@@ -14,11 +14,32 @@ The protocol enables **community lending pools**, **small loans with simple inte
 
 ---
 
-## 🛠️ Technology Stack
 
-- **Blockchain**: EVM-compatible (Lisk L2 / Ethereum testnets).  
+## 🔗 Why Lisk?
 
+We use **Lisk’s EVM-compatible L2** as the underlying blockchain because:  
+- ⚡ Low fees and fast finality → suitable for microcredits.  
+- 🌍 Built on Ethereum alignment → easy integration with existing tools.  
+- 🛠️ Developer-friendly ecosystem with strong support for builders in hackathons.  
+- 🔒 Ensures transparency and security for community-driven finance.
 
+---
+
+## 🏆 ENS Track Participation
+
+We participate in the **ENS Track** because **identity and naming are crucial for financial inclusion**:  
+- Borrowers and pools can be assigned **ENS subdomains** (e.g., `juan.pachacredit.eth`).  
+- Makes credit records more **human-readable and portable**.  
+- Enhances trust and accessibility across Web3 communities.  
+
+---
+
+## 🎨 V0 Participation
+
+We also participated in **V0 (by Vercel)** to design and prototype the frontend.  
+This allowed us to:  
+- Quickly iterate over **UI/UX** ideas.  
+- Align the design with Web3 aesthetics. 
 ---
 
 ## 🏗️ Smart Contract Architecture
@@ -110,28 +131,3 @@ This interface was built using **V0 by Vercel** to quickly prototype the design 
 
 ---
 
-## 🔗 Why Lisk?
-
-We use **Lisk’s EVM-compatible L2** as the underlying blockchain because:  
-- ⚡ Low fees and fast finality → suitable for microcredits.  
-- 🌍 Built on Ethereum alignment → easy integration with existing tools.  
-- 🛠️ Developer-friendly ecosystem with strong support for builders in hackathons.  
-- 🔒 Ensures transparency and security for community-driven finance.
-
----
-
-## 🏆 ENS Track Participation
-
-We participate in the **ENS Track** because **identity and naming are crucial for financial inclusion**:  
-- Borrowers and pools can be assigned **ENS subdomains** (e.g., `juan.pachacredit.eth`).  
-- Makes credit records more **human-readable and portable**.  
-- Enhances trust and accessibility across Web3 communities.  
-
----
-
-## 🎨 V0 Participation
-
-We also participated in **V0 (by Vercel)** to design and prototype the frontend.  
-This allowed us to:  
-- Quickly iterate over **UI/UX** ideas.  
-- Align the design with Web3 aesthetics. 
