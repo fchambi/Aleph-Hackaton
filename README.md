@@ -17,10 +17,7 @@ The protocol enables **community lending pools**, **small loans with simple inte
 ## 🛠️ Technology Stack
 
 - **Blockchain**: EVM-compatible (Lisk L2 / Ethereum testnets).  
-- **Smart Contracts**: Solidity ^0.8.23 with OpenZeppelin libraries.  
-- **Frameworks**: Hardhat + Hardhat Deploy.  
-- **Frontend**: Next.js + TailwindCSS (Web3 dashboard style).  
-- **Wallet Integration**: wagmi / viem.  
+
 
 ---
 
