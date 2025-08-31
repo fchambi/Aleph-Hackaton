@@ -44,18 +44,6 @@ This allowed us to:
 
 ## 🏗️ Smart Contract Architecture
 
-contracts/
-├─ MicroCreditPoolFactory.sol # Creates and registers pools
-├─ MicroCreditPool.sol # Core pool logic: deposits, loans, repayments
-├─ LoanManager.sol # Loan lifecycle and debt calculation
-├─ CreditScoreRegistry.sol # On-chain reputation system (0–100 score)
-├─ Treasury.sol # Collects reserve fees from interest
-├─ interfaces/ # Contract interfaces
-└─ libs/Types.sol # Shared structs and enums
-
-markdown
-Copiar código
-
 ### 🔹 Contract Roles
 - **DEFAULT_ADMIN_ROLE** → Deployers / System admins  
 - **MANAGER_ROLE** → Approve loans, configure pool parameters  
