@@ -73,11 +73,10 @@ Copiar código
 
 ### **Step 4: Deploy LoanManager**
 - Address: `0x75aaAad403b206db02B8bD0ea8E357D238Ae48f3`  
-- Loans Created: 0  
+
 
 ### **Step 5: Deploy MicroCreditPoolFactory**
 - Address: `0xAD39Bd520B519b21Ed1dFE35B21d915c459E892E`  
-- Pools Created: 0  
 
 ### **Step 6: Example Pool**
 - Address: `0x3B688fbF09DDf5432188B93c8Ece32f655b8278F`  
