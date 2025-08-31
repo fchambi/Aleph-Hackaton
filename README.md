@@ -103,5 +103,38 @@ Copiar código
 - **Real Pool**: `0x13b084665235CD3562d0C867035Fb3564c1B27Ec`  
 - **Total Pools Created**: 3  
 
-✅ All roles correctly assigned  
-✅ Pools ready to accept deposits and process loans  
+---
+
+## 🌐 Web App
+
+👉 [PachaCredit dApp UI](https://v0-micro-credit-dao-design.vercel.app/)  
+
+This interface was built using **V0 by Vercel** to quickly prototype the design and user experience of the lending flow. It allows us to demo how investors, borrowers, and managers would interact with the protocol.
+
+---
+
+## 🔗 Why Lisk?
+
+We use **Lisk’s EVM-compatible L2** as the underlying blockchain because:  
+- ⚡ Low fees and fast finality → suitable for microcredits.  
+- 🌍 Built on Ethereum alignment → easy integration with existing tools.  
+- 🛠️ Developer-friendly ecosystem with strong support for builders in hackathons.  
+- 🔒 Ensures transparency and security for community-driven finance.
+
+---
+
+## 🏆 ENS Track Participation
+
+We participate in the **ENS Track** because **identity and naming are crucial for financial inclusion**:  
+- Borrowers and pools can be assigned **ENS subdomains** (e.g., `juan.pachacredit.eth`).  
+- Makes credit records more **human-readable and portable**.  
+- Enhances trust and accessibility across Web3 communities.  
+
+---
+
+## 🎨 V0 Participation
+
+We also participated in **V0 (by Vercel)** to design and prototype the frontend.  
+This allowed us to:  
+- Quickly iterate over **UI/UX** ideas.  
+- Align the design with Web3 aesthetics. 
